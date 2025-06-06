@@ -1,0 +1,12 @@
+Mandato: Actualize los repositorios del sistema (update & Upgrade) y Enumere los repositorios actualmente en uso en su servidor.
+Proceda a buscar la herramienta en el cache de los repositorios a ver si se encuentra disponible.
+Instale la herramienta "Bashtop Resource Monitor" en caso de ser necesario, agregarla al repositorio local (https://es.linux-console.net/?p=438#gsc.tab=0)
+Una vez halla presentado la herramienta anterior, proceda a desinstalarla. eliminando tambien todos los archivos de configuracion 
+Elimine todas las dependencias asociadas a este programa que ya no esten en uso
+                                                                                                            
+                                                                                                      
+Comandos:
+                                                                                                                                    
+apt update
+apt upgrade
+																																																						
