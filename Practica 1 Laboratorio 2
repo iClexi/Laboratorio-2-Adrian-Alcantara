@@ -9,4 +9,21 @@ Comandos:
                                                                                                                                     
 apt update
 apt upgrade
-																																																						
+cat /etc/apt/sources.list
+cat /etc/apt/sources.lisy.d/*
+ls /etc/apt/sources.lisy.d/*
+apt purge bashtop -y
+apt cache search bashtop
+apt install bashtop
+bashtop
+^C
+#q
+apt purge bashtop
+#n
+apt purge bashtop -y
+apt autoremove -y
+
+add-apt-repository --remove ppa:bashtop-monitor/bashtop -y
+apt update
+apt list --upgradable
+apt upgrade
