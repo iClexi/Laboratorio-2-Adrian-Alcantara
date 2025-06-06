@@ -1,0 +1,23 @@
+Mandato: Cree un trabajo cron que actualice el sistema todas las tardes a las 11 p.m
+Programe su máquina para que se reinicie todos los domingos a las 3 a.m.
+Cree una tarea programada usando el comando "at" para que elimine el contenido de la carpeta /tmp dentro de 1 minuto. Mostrar el resultado con ls /tmp antes y despues de la ejecucion
+
+
+Comandos:
+
+sudo su
+cronta -e
+0 23 * * * apt update && apt upgrade -y 
+^X
+#ENTER
+#ENTER
+crontab -e 
+0 3 * * 0 /sbin/reboot
+^X
+#ENTER
+#ENTER
+apt install at -y
+systemctl enable --now atd
+ls /tmp
+echo "rm -rf /tmp/*" | at now + 1 minute
+ls /tmp
