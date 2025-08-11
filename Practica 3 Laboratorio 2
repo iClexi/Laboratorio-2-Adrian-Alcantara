@@ -1,34 +1,54 @@
-Mandato: Valla a las configuraciones de su VM Cree un disco de 20GB y atachelo a tu Maquina Virtual
-reinicie el sistema, formateelo como una particion ext4. cree una carpeta en el escritorio y montelo en dicha carpeta utilizando el comando mount
-entre al directorio y cree un archivo llamado AdrianAlcantara.txt
-desmonte la unidad y montela en el directorio /mnt
-ingrese a /mnt y compruebe que el archivo continua ahi lsblk
-
-Comandos:
-
+# Ser superusuario
 sudo su
+
+# Ver discos y particiones actuales
+lsblk
+fdisk -l
+
+# Crear partición en /dev/sdb
 fdisk /dev/sdb
-# n
-# p
-# ENTER
-# ENTER
-# ENTER
-# w
+# n → nueva partición
+# p → primaria
+# ENTER → inicio por defecto
+# ENTER → final por defecto
+# ENTER → confirmar
+# w → guardar cambios
 
- mkfs.ext4 /dev/sdb1
+# Verificar nueva partición
+lsblk
+fdisk -l
 
+# Formatear en EXT4
+mkfs.ext4 /dev/sdb1
+
+# Confirmar tipo de sistema de archivos
+blkid /dev/sdb1
+
+# Crear carpeta de montaje
 mkdir ~/DiscoAdrian
 
+# Montar disco en carpeta
 mount /dev/sdb1 ~/DiscoAdrian
 
-cd ~/DiscoAdrian
+# Ver uso de espacio
+df -h ~/DiscoAdrian
 
+# Entrar y crear archivo
+cd ~/DiscoAdrian
 touch AdrianAlcantara.txt
 
+# Volver al home
 cd ~
 
- umount ~/DiscoAdrian
+# Desmontar disco
+umount ~/DiscoAdrian
 
- mount /dev/sdb1 /mnt
+# Montar en /mnt
+mount /dev/sdb1 /mnt
 
+# Ver contenido y uso
 ls /mnt
+df -h /mnt
+
+# Probar lectura del archivo
+cat /mnt/AdrianAlcantara.txt
