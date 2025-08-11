@@ -1,23 +1,57 @@
-Mandato: Cree un trabajo cron que actualice el sistema todas las tardes a las 11 p.m
-Programe su máquina para que se reinicie todos los domingos a las 3 a.m.
-Cree una tarea programada usando el comando "at" para que elimine el contenido de la carpeta /tmp dentro de 1 minuto. Mostrar el resultado con ls /tmp antes y despues de la ejecucion
+# -----------------------------------------
+# CRON Y AT EN LINUX
+# -----------------------------------------
+# CRON: Ejecuta tareas periódicas según 5 campos:
+#   ┌──────── min (0-59)
+#   │ ┌────── hora (0-23)
+#   │ │ ┌──── día del mes (1-31)
+#   │ │ │ ┌── mes (1-12)
+#   │ │ │ │ ┌─ día de la semana (0-6) [0=Domingo]
+#   │ │ │ │ │
+#   * * * * * comando
+#
+# Ejemplos:
+#   0 23 * * * → a las 23:00 todos los días
+#   30 8 * * 1 → lunes a las 08:30
+#   */5 * * * * → cada 5 minutos
+#
+# AT: Ejecuta una tarea una sola vez en el futuro.
+#   Sintaxis básica:
+#     echo "comando" | at hora
+#     echo "comando" | at now + tiempo
+#   Ejemplos:
+#     echo "ls" | at 15:00
+#     echo "ls" | at now + 2 minutes
+# -----------------------------------------
 
-
-Comandos:
-
+# Ser superusuario
 sudo su
-cronta -e
-0 23 * * * apt update && apt upgrade -y 
-^X
-#ENTER
-#ENTER
-crontab -e 
+
+# Editar cron del usuario root
+crontab -e
+
+# Todos los días a las 23:00 actualizar y actualizar paquetes
+0 23 * * * apt update && apt upgrade -y
+# ^X → Enter → Enter para guardar y salir
+
+# Editar cron nuevamente
+crontab -e
+
+# Reiniciar todos los domingos a las 03:00
 0 3 * * 0 /sbin/reboot
-^X
-#ENTER
-#ENTER
+# ^X → Enter → Enter
+
+# Instalar at (para tareas únicas)
 apt install at -y
+
+# Habilitar y arrancar servicio atd
 systemctl enable --now atd
+
+# Listar /tmp
 ls /tmp
+
+# Programar borrado de /tmp en 1 minuto desde ahora
 echo "rm -rf /tmp/*" | at now + 1 minute
+
+# Ver /tmp después
 ls /tmp
