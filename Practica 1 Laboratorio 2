@@ -1,29 +1,52 @@
-Mandato: Actualize los repositorios del sistema (update & Upgrade) y Enumere los repositorios actualmente en uso en su servidor.
-Proceda a buscar la herramienta en el cache de los repositorios a ver si se encuentra disponible.
-Instale la herramienta "Bashtop Resource Monitor" en caso de ser necesario, agregarla al repositorio local (https://es.linux-console.net/?p=438#gsc.tab=0)
-Una vez halla presentado la herramienta anterior, proceda a desinstalarla. eliminando tambien todos los archivos de configuracion 
-Elimine todas las dependencias asociadas a este programa que ya no esten en uso
-                                                                                                            
-                                                                                                      
-Comandos:
-                                                                                                                                    
+# Actualizar lista de paquetes
 apt update
+
+# Instalar actualizaciones disponibles
 apt upgrade
+
+# Ver lista de repositorios principales
 cat /etc/apt/sources.list
-cat /etc/apt/sources.lisy.d/*
-ls /etc/apt/sources.lisy.d/*
+
+# Ver repositorios adicionales (archivos .list en la carpeta sources.list.d)
+cat /etc/apt/sources.list.d/*
+
+# Listar archivos de repos adicionales
+ls /etc/apt/sources.list.d/*
+
+# Eliminar paquete bashtop (y confirmar automáticamente)
 apt purge bashtop -y
-apt cache search bashtop
+
+# Buscar bashtop en el repositorio
+apt-cache search bashtop
+
+# Instalar bashtop
 apt install bashtop
+
+# Ejecutar bashtop
 bashtop
-^C
+# ^C para salir
+
+# Salir del prompt si quedó en modo interactivo
 #q
+
+# Intentar purgar bashtop (sin confirmar)
 apt purge bashtop
-#n
+#n para cancelar
+
+# Purgar bashtop con confirmación automática
 apt purge bashtop -y
+
+# Eliminar dependencias que ya no se usan
 apt autoremove -y
 
+# Quitar el repositorio PPA de bashtop
 add-apt-repository --remove ppa:bashtop-monitor/bashtop -y
+
+# Actualizar lista de paquetes nuevamente
 apt update
+
+# Ver paquetes que se pueden actualizar
 apt list --upgradable
+
+# Actualizar paquetes disponibles
 apt upgrade
